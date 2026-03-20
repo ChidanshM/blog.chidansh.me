@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('posts'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+
+const research = (await getCollection('research'))
+  .sort((a, b) => b.data.week - a.data.week)
+  .slice(0, 1);
+---
+
+<BaseLayout title="Chidansh">
+  <p>
+    Hi, I'm Chidansh — ML engineer and grad researcher at Syracuse University.
+    I work on time-series, RF signals, and whatever interesting problem I can't stop thinking about.
+    <em>अहं नित्यं अध्येता अस्मि</em> — I am a constant learner.
+  </p>
+
+  <p>
+    You can find my portfolio and resume at <a href="https://chidansh.com">chidansh.com</a>.
+    This is where I write.
+  </p>
+
+  {posts.length > 0 && (
+    <>
+      <h3>Recent writing</h3>
+      <ul class="post-list">
+        {posts.map(post => (
+          <li>
+            <a href={`/writing/${post.slug}`}>{post.data.title}</a>
+            <span class="date">
+              {post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+            </span>
+          </li>
+        ))}
+      </ul>
+      <p style="font-size: 0.85rem;"><a href="/writing">All posts →</a></p>
+    </>
+  )}
+
+  {research.length > 0 && (
+    <>
+      <h3>Latest research update</h3>
+      <ul class="post-list">
+        {research.map(entry => (
+          <li>
+            <a href={`/research/week-${entry.data.week}`}>
+              <span class="week-badge">Week {entry.data.week}</span>
+              {entry.data.title}
+            </a>
+            <span class="date">
+              {entry.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+            </span>
+          </li>
+        ))}
+      </ul>
+      <p style="font-size: 0.85rem;"><a href="/research">All updates →</a></p>
+    </>
+  )}
+</BaseLayout>

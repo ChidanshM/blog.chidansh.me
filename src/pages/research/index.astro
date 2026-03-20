@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const entries = (await getCollection('research'))
+  .sort((a, b) => b.data.week - a.data.week);
+---
+
+<BaseLayout title="Research" description="Weekly updates from my ML research course project.">
+  <h1>Research</h1>
+  <p style="color: #666; font-size: 0.9rem;">
+    Weekly updates from my ML research course project at Syracuse University.
+    Each entry covers what I worked on, what I learned, and what's next.
+  </p>
+
+  {entries.length === 0 ? (
+    <p style="color: #888;">First update coming soon.</p>
+  ) : (
+    <ul class="post-list">
+      {entries.map(entry => (
+        <li>
+          <a href={`/research/week-${entry.data.week}`}>
+            <span class="week-badge">Week {entry.data.week}</span>
+            {entry.data.title}
+          </a>
+          <span class="date">
+            {entry.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+          </span>
+        </li>
+      ))}
+    </ul>
+  )}
+</BaseLayout>

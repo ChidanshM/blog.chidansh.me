@@ -1,0 +1,25 @@
+---
+import PostLayout from '../../layouts/PostLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('research');
+  return entries.map(entry => ({
+    params: { week: `week-${entry.data.week}` },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<PostLayout
+  title={`Week ${entry.data.week} — ${entry.data.title}`}
+  date={entry.data.date}
+  description={entry.data.summary}
+  backHref="/research"
+  backLabel="← research"
+>
+  <Content />
+</PostLayout>
