@@ -20,4 +20,14 @@ const research = defineCollection({
   }),
 });
 
-export const collections = { posts, research };
+const cis773 = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    week: z.number(),
+    date: z.date(),
+    summary: z.string().optional(),
+  }),
+});
+
+export const collections = { posts, research, cis773 };
