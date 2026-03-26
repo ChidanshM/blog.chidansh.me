@@ -1,0 +1,27 @@
+---
+import PostLayout from '../../../../layouts/PostLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const entries = (await getCollection('cis773'))
+    .filter(e => e.slug.startsWith('project/weekly-update/'));
+
+  return entries.map(entry => ({
+    params: { week: `week-${entry.data.week}` },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<PostLayout
+  title={`CIS 773 — Week ${entry.data.week}: ${entry.data.title}`}
+  date={entry.data.date}
+  description={entry.data.summary}
+  backHref="/cis773/project/weekly-update"
+  backLabel="← weekly updates"
+>
+  <Content />
+</PostLayout>
