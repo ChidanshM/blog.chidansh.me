@@ -1,8 +1,8 @@
 ---
-title: "Week 1"
+title: "Re-Onboarding & Semester Planning"
 week: 1
 date: 2026-03-26
-summary: "Re-Onboarding & Semester Planning"
+summary: "Reestablishing the research questiong"
 ---
 
 ## What I worked on
