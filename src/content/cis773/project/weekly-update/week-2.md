@@ -1,8 +1,8 @@
 ---
-title: "Week 2"
+title: Pipeline Repair & Bug Resolution
 week: 2
 date: 2026-03-28
-summary: "Codebase Audit & Bug Resolution"
+summary: Codebase Audit & Bug Resolution
 ---
 
 ## What I worked on
