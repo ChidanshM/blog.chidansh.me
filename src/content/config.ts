@@ -20,7 +20,7 @@ const research = defineCollection({
   }),
 });
 
-const cis773 = defineCollection({
+const cis731 = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
@@ -30,4 +30,4 @@ const cis773 = defineCollection({
   }),
 });
 
-export const collections = { posts, research, cis773 };
+export const collections = { posts, research, cis731 };

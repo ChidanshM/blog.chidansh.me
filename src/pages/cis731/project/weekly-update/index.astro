@@ -2,14 +2,14 @@
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
-const entries = (await getCollection('cis773'))
+const entries = (await getCollection('cis731'))
   .filter(e => e.slug.startsWith('project/weekly-update/'))
   .sort((a, b) => b.data.week - a.data.week);
 ---
 
 <BaseLayout title="CIS 731 — Weekly Updates" description="Weekly project updates for CIS 731 at Syracuse University.">
   <p style="font-size: 0.82rem; color: #888; margin-bottom: 0.25rem;">
-    <a href="/cis773" style="color: #888; text-decoration: none;">← cis773</a>
+    <a href="/cis731" style="color: #888; text-decoration: none;">← cis731</a>
   </p>
   <h1>Weekly Updates</h1>
   <p style="color: #666; font-size: 0.9rem;">
@@ -22,7 +22,7 @@ const entries = (await getCollection('cis773'))
     <ul class="post-list">
       {entries.map(entry => (
         <li>
-          <a href={`/cis773/project/weekly-update/week-${entry.data.week}`}>
+          <a href={`/cis731/project/weekly-update/week-${entry.data.week}`}>
             <span class="week-badge">Week {entry.data.week}</span>
             {entry.data.title}
           </a>
