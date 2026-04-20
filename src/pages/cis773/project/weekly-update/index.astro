@@ -7,13 +7,13 @@ const entries = (await getCollection('cis773'))
   .sort((a, b) => b.data.week - a.data.week);
 ---
 
-<BaseLayout title="CIS 773 — Weekly Updates" description="Weekly project updates for CIS 773 at Syracuse University.">
+<BaseLayout title="CIS 731 — Weekly Updates" description="Weekly project updates for CIS 731 at Syracuse University.">
   <p style="font-size: 0.82rem; color: #888; margin-bottom: 0.25rem;">
     <a href="/cis773" style="color: #888; text-decoration: none;">← cis773</a>
   </p>
   <h1>Weekly Updates</h1>
   <p style="color: #666; font-size: 0.9rem;">
-    Weekly progress updates for my CIS 773 course project.
+    Weekly progress updates for my CIS 731 course project.
   </p>
 
   {entries.length === 0 ? (
